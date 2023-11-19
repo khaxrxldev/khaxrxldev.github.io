@@ -10,6 +10,8 @@
 .card-section:nth-child(1) {
   padding: 10px;
   border: 1px solid #000000;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .card-section:nth-child(2) {
   padding: 20px 10px;
@@ -22,7 +24,7 @@
   position: relative;
   padding-bottom: 60px;
   text-align: center;
-  border-bottom: 1px solid #d3d3d3;
+  border-bottom: 1px solid #ffffff;
 }
 .center-icon {
   position: absolute;
@@ -42,7 +44,15 @@
 .grid-three div {
   text-align: center;
   padding: 10px;
+  /* background-color: rgba(255, 255, 255, 0.5); */
   background-color: rgba(0, 0, 0, 0.1);
+}
+.param-icon {
+  margin: 10px 0px;
+}
+.param-icon-text {
+  margin: 10px 0px;
+  margin-bottom: -8px;
 }
 .param-text {
   font-family: 'Roboto', sans-serif;

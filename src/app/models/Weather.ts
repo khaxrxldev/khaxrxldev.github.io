@@ -3,6 +3,7 @@ export interface Weather {
   longitude?: number,
   location?: string,
   state?: string,
+  background?: string,
   generationtime_ms?: number,
   utc_offset_seconds?: number,
   timezone?: string,
@@ -16,7 +17,8 @@ export interface Weather {
     is_day?: string,
     precipitation?: string,
     weather_code?: string,
-    wind_speed_10m?: string
+    wind_speed_10m?: string,
+    wind_direction_10m?: string
   },
   current?: {
     time?: string,
@@ -26,16 +28,19 @@ export interface Weather {
     is_day?: number,
     precipitation?: number,
     weather_code?: number,
-    wind_speed_10m?: number
+    wind_speed_10m?: number,
+    wind_direction_10m?: number
   },
   hourly_units?: {
     time?: string,
     precipitation_probability?: string,
-    weather_code?: string
+    weather_code?: string,
+    is_day?: string
   },
   hourly?: {
     time?: string[],
     precipitation_probability?: number[],
-    weather_code?: number[]
+    weather_code?: number[],
+    is_day?: number[]
   }
 }

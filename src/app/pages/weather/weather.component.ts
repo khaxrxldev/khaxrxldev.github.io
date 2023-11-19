@@ -18,17 +18,20 @@ export class WeatherComponent implements OnInit {
       lat: 3.05136,
       long: 101.62444,
       location: 'Puchong jaya',
-      state: 'Selangor'
+      state: 'Selangor',
+      background: ''
     }, {
       lat: 2.98284,
       long: 101.62377,
       location: 'Bukit puchong',
-      state: 'Selangor'
+      state: 'Selangor',
+      background: ''
     }, {
       lat: 2.92131,
       long: 101.65652,
       location: 'Cyberjaya',
-      state: 'Selangor'
+      state: 'Selangor',
+      background: ''
     }
   ]
 
@@ -38,6 +41,7 @@ export class WeatherComponent implements OnInit {
         map((data) => {
           data.location = coordinate.location;
           data.state = coordinate.state;
+          data.background = coordinate.background;
           return data;
         })
       ));
@@ -49,5 +53,16 @@ export class WeatherComponent implements OnInit {
     let date = new Date(time);
 
     return date.getHours() >= currentDate.getHours();
+  }
+
+  isDay(time: string) {
+    let date = new Date(time);
+    
+    return date.getHours() >= 7 && date.getHours() <= 18;
+  }
+
+  windDirection(angle: number) {
+    const directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+    return directions[Math.round(angle / 45) % 8];
   }
 }

@@ -1,7 +1,7 @@
 <div class='card-container'>
   <ng-container *ngFor="let weather of weathers$">
     <div *ngIf="weather | async as weather" class='card'>
-      <div class="card-section">
+      <div class="card-section" [ngStyle]="{ 'background-image': 'url(' + weather.background + ')' }">
         <div class="card-header">
           <div>{{ weather.current?.temperature_2m! | number: '1.0-0' }}&deg;</div>
           <ng-container *ngIf="weather.current?.weather_code! >= 0 && weather.current?.weather_code! <= 3">
@@ -15,16 +15,22 @@
         </div>
         <div class="grid-three">
           <div>
+            <img class="param-icon"  src="../../../assets/icons/HUMIDITY_ICON.png" height="25" alt="">
+            <br>
             <span class="param-value">{{ weather.current?.relative_humidity_2m! + weather.current_units?.relative_humidity_2m! }}</span>
             <br>
             <span class="param-text">Humidity</span>
           </div>
           <div>
+            <h6 class="param-icon-text param-value">{{ windDirection(weather.current?.wind_direction_10m!) }}</h6>
+            <br>
             <span class="param-value">{{ weather.current?.wind_speed_10m! + weather.current_units?.wind_speed_10m! }}</span>
             <br>
             <span class="param-text">Wind</span>
           </div>
           <div>
+            <img class="param-icon"  src="../../../assets/icons/PRECIPITATION_ICON.png" height="25" alt="">
+            <br>
             <span class="param-value">{{ weather.current?.precipitation! + weather.current_units?.precipitation! }}</span>
             <br>
             <span class="param-text">Precipitation</span>
@@ -46,8 +52,8 @@
             <div *ngIf="exceedCurrentTime(time)" class="hourly-card">
               <div class="hourly-label">{{ time | date:'h:mm a' }}</div>
               <ng-container *ngIf="weather.hourly?.weather_code![i] >= 0 && weather.hourly?.weather_code![i] <= 3">
-                <img class="hourly-card-icon" *ngIf="weather.current?.is_day! == 1" src="../../../assets/icons/0_1_2_3_D.png" height="40" alt="">
-                <img class="hourly-card-icon" *ngIf="weather.current?.is_day! == 0" src="../../../assets/icons/0_1_2_3_N.png" height="40" alt="">
+                <img class="hourly-card-icon" *ngIf="isDay(time)" src="../../../assets/icons/0_1_2_3_D.png" height="40" alt="">
+                <img class="hourly-card-icon" *ngIf="!isDay(time)" src="../../../assets/icons/0_1_2_3_N.png" height="40" alt="">
               </ng-container>
               <img class="hourly-card-icon" *ngIf="weather.hourly?.weather_code![i] >= 45 && weather.hourly?.weather_code![i] <= 48" src="../../../assets/icons/45_48.png" height="40" alt="">
               <img class="hourly-card-icon" *ngIf="weather.hourly?.weather_code![i] >= 51 && weather.hourly?.weather_code![i] <= 57" src="../../../assets/icons/51_53_55_56_57.png" height="40" alt="">
